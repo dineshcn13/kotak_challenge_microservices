@@ -1,0 +1,16 @@
+package com.test.kotak.cherry.employee.valueobject;
+
+import com.test.kotak.cherry.employee.entity.Employee;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ResponseData {
+
+    private Employee employee;
+    private Department department;
+}

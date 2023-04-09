@@ -1,0 +1,13 @@
+server.port = 9080
+spring.application.name=USER-SERVICE
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/department
+spring.datasource.username=postgres
+spring.datasource.password=admin
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=update
+
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false

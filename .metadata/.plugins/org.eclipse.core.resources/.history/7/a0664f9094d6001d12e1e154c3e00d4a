@@ -1,0 +1,5 @@
+package com.test.kotak.cherry.user.controller;
+
+public interface DepartmentServiceProxy {
+
+}

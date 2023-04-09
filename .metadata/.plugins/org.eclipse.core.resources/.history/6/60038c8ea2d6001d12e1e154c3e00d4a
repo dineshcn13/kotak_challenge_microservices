@@ -1,0 +1,41 @@
+package com.test.kotak.cherry.employee.service;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.test.kotak.cherry.company.controller.CompanyServiceProxy;
+import com.test.kotak.cherry.employee.entity.Employee;
+import com.test.kotak.cherry.employee.repository.EmployeeRepository;
+import com.test.kotak.cherry.employee.valueobject.Company;
+import com.test.kotak.cherry.employee.valueobject.ResponseData;
+
+@Service
+@Slf4j
+public class EmployeeService {
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+    
+    @Autowired
+    private CompanyServiceProxy companyServiceProxy;
+
+    public Employee saveEmployee(Employee employee) {
+        log.info("Inside saveEmployee of EmployeeService");
+        return employeeRepository.save(employee);
+    }
+
+    public ResponseData getEmployeeWithCompany(Long employeeId) {
+        log.info("Inside getEmployeeWithCompany of EmployeeService");
+        ResponseData responseData = new ResponseData();
+        Employee employee = employeeRepository.findByEmployeeId(employeeId);
+        
+        log.info("Inside companyServiceProxy of EmployeeService");
+        Company company = companyServiceProxy.findCompanyByCompanyId(employee.getCompanyId());
+
+        responseData.setEmployee(employee);
+        responseData.setCompany(company);
+
+        return  responseData;
+    }
+}

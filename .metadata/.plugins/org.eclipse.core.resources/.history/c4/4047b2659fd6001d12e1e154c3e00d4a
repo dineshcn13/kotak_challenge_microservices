@@ -1,0 +1,32 @@
+package com.test.kotak.cherry.employee.controller;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import com.test.kotak.cherry.employee.entity.User;
+import com.test.kotak.cherry.employee.service.UserService;
+import com.test.kotak.cherry.employee.valueobject.ResponseData;
+
+@RestController
+@RequestMapping("/users")
+@Slf4j
+public class EmployeeController {
+
+    @Autowired
+    private UserService userService;
+
+    @PostMapping("/")
+    public User saveUser(@RequestBody User user) {
+        log.info("Inside saveUser of EmployeeController");
+        return userService.saveUser(user);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseData getUserWithDepartment(@PathVariable("id") Long userId) {
+        log.info("Inside getUserWithDepartment of EmployeeController");
+        return userService.getUserWithDepartment(userId);
+    }
+
+
+}

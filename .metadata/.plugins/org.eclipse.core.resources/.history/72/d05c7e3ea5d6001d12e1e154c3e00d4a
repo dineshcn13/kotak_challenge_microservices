@@ -1,0 +1,54 @@
+package com.test.kotak.cherry.company.service;
+
+import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.test.kotak.cherry.company.entity.Company;
+import com.test.kotak.cherry.company.repository.CompanyRepository;
+import com.test.kotak.cherry.company.responsedata.Employee;
+import com.test.kotak.cherry.company.responsedata.ResponseData;
+
+@Service
+@Slf4j
+public class CompanyService {
+
+    @Autowired
+    private CompanyRepository companyRepository;
+
+    public Company saveCompany(Company company) {
+        log.info("Inside saveCompany of CompanyService");
+        return companyRepository.save(company);
+    }
+
+    public Company findCompanyByCompanyId(Long companyId) {
+        log.info("Inside findDepartmentById of CompanyService");
+        return companyRepository.findCompanyByCompanyId(companyId);
+    }
+
+	public String deleteCompanyByCompanyId(Long companyId) {
+		log.info("Inside deleteCompanyByCompanyId of CompanyService");
+		companyRepository.deleteById(companyId);
+		return "Deleted Successfully!";
+	}
+
+	public Company updateCompanyByCompanyId(Company company) {
+		log.info("Inside updateDepartmentById of CompanyService");
+		return companyRepository.save(company);
+	}
+	
+	 public ResponseData getEmployeeWithCompany(Long companyId) {
+	        log.info("Inside getEmployeeWithCompany of CompanyService");
+	        ResponseData responseData = new ResponseData();
+	        Company company = companyRepository.findCompanyByCompanyId(companyId);
+	        
+	        log.info("Inside companyServiceProxy of EmployeeService");
+	        Company company = companyServiceProxy.findCompanyByCompanyId(employee.getCompanyId());
+
+	        responseData.setEmployee(employee);
+	        responseData.setCompany(company);
+
+	        return  responseData;
+	    }
+}

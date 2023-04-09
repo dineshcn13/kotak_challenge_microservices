@@ -1,0 +1,59 @@
+package com.test.kotak.cherry.department.controller;
+
+import com.test.kotak.cherry.department.entity.Company;
+import com.test.kotak.cherry.department.service.CompanyService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/departments")
+@Slf4j
+public class CompanyController {
+
+    @Autowired
+    private CompanyService companyService;
+
+    @PostMapping("/")
+    public ResponseEntity<Company> saveCompany(@RequestBody Company company) {
+        log.info("Inside saveCompany method of CompanyController");
+        return ResponseEntity.status(HttpStatus.OK).body(companyService.saveDepartment(company));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Company> findCompanyByCompanyId(@PathVariable("id") Long companyId) {
+        log.info("Inside findCompanyByCompanyId method of CompanyController");
+        return ResponseEntity.status(HttpStatus.OK).body(companyService.findDepartmentById(companyId));
+    }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteDepartmentById(@PathVariable("id") Long departmentId) {
+        log.info("Inside deleteDepartmentById method of CompanyController");
+        return ResponseEntity.status(HttpStatus.OK).body(companyService.deleteDepartmentById(departmentId));
+    }
+    
+    // Update operation
+    @PutMapping("/{id}")
+    public ResponseEntity<Company> updateDepartmentById(@RequestBody Company department,@PathVariable("id") Long departmentId){
+    	
+    	Company department1 = companyService.findDepartmentById(departmentId);
+    	
+    	if(ObjectUtils.isEmpty(department1)) {
+    		
+    		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(companyService.updateDepartmentById(department1));
+    		
+    	} else {
+    	
+	    	department1.setDepartmentAddress(department.getDepartmentAddress());
+	    	department1.setDepartmentCode(department.getDepartmentCode());
+	    	department1.setDepartmentName(department1.getDepartmentName());
+	    	
+	    	return ResponseEntity.status(HttpStatus.OK).body(companyService.updateDepartmentById(department1));
+    	}
+    	
+    }
+
+}

@@ -1,0 +1,5 @@
+package com.test.kotak.cherry.department.entity;
+
+public class Department {
+
+}

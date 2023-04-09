@@ -1,0 +1,38 @@
+package com.test.kotak.cherry.department.service;
+
+import com.test.kotak.cherry.department.entity.Company;
+import com.test.kotak.cherry.department.repository.CompanyRepository;
+
+import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+@Slf4j
+public class DepartmentService {
+
+    @Autowired
+    private CompanyRepository companyRepository;
+
+    public Company saveDepartment(Company department) {
+        log.info("Inside saveDepartment of DepartmentService");
+        return companyRepository.save(department);
+    }
+
+    public Company findDepartmentById(Long departmentId) {
+        log.info("Inside saveDepartment of DepartmentService");
+        return companyRepository.findByDepartmentId(departmentId);
+    }
+
+	public String deleteDepartmentById(Long departmentId) {
+		log.info("Inside deleteDepartment of DepartmentService");
+		companyRepository.deleteById(departmentId);
+		return "Deleted Successfully!";
+	}
+
+	public Company updateDepartmentById(Company department) {
+		log.info("Inside updateDepartment of DepartmentService");
+		return companyRepository.save(department);
+	}
+}

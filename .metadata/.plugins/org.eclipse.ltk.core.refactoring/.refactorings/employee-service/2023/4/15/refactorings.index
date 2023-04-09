@@ -1,0 +1,16 @@
+1681021437485	Rename package 'com.test.kotak.cherry.user'
+1681021501095	Rename type 'UserServiceApplication'
+1681021520373	Rename type 'DepartmentServiceProxy'
+1681021536395	Rename type 'EmployeeServiceProxy'
+1681021549030	Rename type 'UserController'
+1681021561338	Rename type 'User'
+1681021575732	Rename type 'UserRepository'
+1681021590733	Rename type 'UserService'
+1681021616102	Rename type 'Department'
+1681022842055	Move compilation unit
+1681023025693	Copy compilation units
+1681023059955	Delete element
+1681023076339	Copy compilation unit
+1681023097479	Copy compilation unit
+1681025072398	Rename package 'com.test.kotak.cherry.user'
+1681025089202	Rename type 'UserServiceApplicationTests'

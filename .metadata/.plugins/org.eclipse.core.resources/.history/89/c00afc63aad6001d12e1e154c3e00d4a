@@ -1,0 +1,18 @@
+package com.test.kotak.cherry.company.controller;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.test.kotak.cherry.company.responsedata.Employee;
+
+@FeignClient(name="EMPLOYEE-SERVICE")
+public interface EmployeeServiceProxy {
+	
+	@GetMapping("employees/")
+	String getEmployeeCall();
+	
+	@GetMapping("employees/{id}")
+	List<Employee> findEmployeeByCompanyId(Long companyId);
+}

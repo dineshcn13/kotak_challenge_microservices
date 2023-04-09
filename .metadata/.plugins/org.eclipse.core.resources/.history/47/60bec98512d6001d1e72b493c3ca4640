@@ -1,0 +1,59 @@
+package com.test.kotak.cherry.department.controller;
+
+import com.test.kotak.cherry.department.entity.Department;
+import com.test.kotak.cherry.department.service.DepartmentService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/departments")
+@Slf4j
+public class DepartmentController {
+
+    @Autowired
+    private DepartmentService departmentService;
+
+    @PostMapping("/")
+    public ResponseEntity<Department> saveDepartment(@RequestBody Department department) {
+        log.info("Inside saveDepartment method of DepartmentController");
+        return ResponseEntity.status(HttpStatus.OK).body(department);
+    }
+
+    @GetMapping("/{id}")
+    public Department findDepartmentById(@PathVariable("id") Long departmentId) {
+        log.info("Inside findDepartmentById method of DepartmentController");
+        return departmentService.findDepartmentById(departmentId);
+    }
+    
+    @DeleteMapping("/{id}")
+    public String deleteDepartmentById(@PathVariable("id") Long departmentId) {
+        log.info("Inside deleteDepartmentById method of DepartmentController");
+        return departmentService.deleteDepartmentById(departmentId);
+    }
+    
+    // Update operation
+    @PutMapping("/{id}")
+    public ResponseEntity<Department> updateDepartmentById(@RequestBody Department department,@PathVariable("id") Long departmentId){
+    	
+    	Department department1 = departmentService.findDepartmentById(departmentId);
+    	
+    	if(ObjectUtils.isEmpty(department1)) {
+    		
+    		log
+    		
+    	} else {
+    	
+    	department1.setDepartmentAddress(department.getDepartmentAddress());
+    	department1.setDepartmentCode(department.getDepartmentCode());
+    	department1.setDepartmentName(department1.getDepartmentName());
+    	
+    	}
+    	
+    	return departmentService.updateDepartmentById(department1);
+    }
+
+}

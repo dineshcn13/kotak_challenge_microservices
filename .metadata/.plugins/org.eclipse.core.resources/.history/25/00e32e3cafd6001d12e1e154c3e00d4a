@@ -1,0 +1,13 @@
+server.port=9990
+
+spring.application.name=API-GATEWAY
+
+spring.main.web-application-type=reactive
+
+spring.cloud.gateway.routes[0].id=EMPLOYEE-SERVICE
+spring.cloud.gateway.routes[0].uri=lb://EMPLOYEE-SERVICE
+spring.cloud.gateway.routes[0].predicates[0]=Path=/employees/**
+
+spring.cloud.gateway.routes[1].id=COMPANY-SERVICE
+spring.cloud.gateway.routes[1].uri=lb://COMPANY-SERVICE
+spring.cloud.gateway.routes[1].predicates[0]=Path=/companies/**

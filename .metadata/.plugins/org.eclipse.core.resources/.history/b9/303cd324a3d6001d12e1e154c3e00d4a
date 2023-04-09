@@ -1,0 +1,14 @@
+package com.test.kotak.cherry.company.controller;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.test.kotak.cherry.employee.valueobject.Company;
+
+@FeignClient(name="EMPLOYEE-SERVICE")
+public interface CompanyServiceProxy {
+	
+	@GetMapping("employees/{id}")
+	Company findCompanyByCompanyId(@PathVariable("id")Long companyId);
+}

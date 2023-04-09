@@ -1,0 +1,8 @@
+package com.test.kotak.cherry.user.valueobject;
+
+public class Snippet {
+	public static void main(String[] args) {
+		com.test.kotak.cherry.user.valueobject
+	}
+}
+
